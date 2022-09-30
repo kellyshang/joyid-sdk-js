@@ -60,7 +60,9 @@ export const generateJoyIDInfoTx = async (
   rawTx.witnesses = rawTx.inputs.map((_, i) =>
     i > 0 ? '0x' : { lock: '', inputType: '', outputType: generateJoyIDMetadata(joyIDInfo) },
   )
+  console.log(`unsign tx: ${JSON.stringify(rawTx)}`)
 
+  console.log(`fromPrivateKey: ${fromPrivateKey}`)
   const key = keyFromPrivate(fromPrivateKey)
   const signedTx = signTransaction(key, rawTx)
   console.info(JSON.stringify(signedTx))
